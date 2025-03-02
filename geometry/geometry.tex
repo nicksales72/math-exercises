@@ -1,0 +1,59 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}    
+\usepackage{amsmath, amssymb} 
+\usepackage{parskip}
+\usepackage{graphicx}       
+\usepackage{hyperref}       
+\usepackage{geometry}       
+\geometry{margin=1in}       
+
+\title{Geometry Exercises}
+\author{Nicholas Sales}
+\date{} 
+
+\begin{document}
+
+\maketitle 
+\tableofcontents
+
+\newpage
+
+\section{Chapter 1}
+
+\subsection{Exercise I-1}
+
+\textbf{Show that the function $f : \mathbb{E}^n \rightarrow \mathbb{E}^n$ defined by $f(\vec{v}) = 2 \vec{v}$ is bijective but not an isometry.}
+
+We first show $f$ is bijective. To show injectivity, let $\vec{x}, \vec{y} \in \mathbb{E}^n$ such that $f(\vec{x}) = f(\vec{y})$. Then:
+\begin{equation*}
+  2 \vec{x} = 2 \vec{y} \implies \vec{x} = \vec{y}
+\end{equation*}
+Since $\vec{x} = \vec{y}$, $f$ is injective. We now show $f$ is surjective, let $\vec{m} \in \mathbb{E}^n$. We aim to find some $\vec{v} \in \mathbb{E}^n$ such that $f(\vec{v}) = \vec{m}$. So:
+\begin{equation*}
+  2 \vec{v} = \vec{m} \implies \vec{v} = \frac{1}{2} \vec{m}
+\end{equation*}
+Indeed, checking this:
+\begin{equation*}
+  f \left ( \frac{1}{2} \vec{m} \right ) = 2 \left ( \frac{1}{2} \vec{m} \right ) = \vec{m}
+\end{equation*}
+This shows $f$ is surjective. Thus, since $f$ is both injective and surjective, $f$ is bijective.
+
+To show $f$ is not an isometry, we proceed by counterexample. Let $(1, 5), (2, 3) \in \mathbb{E}^n$. For $f$ to be an isometry we must have:
+\begin{align*}
+  || (1, 5) - (2, 3) || &= || f(1, 5) - f(2, 3) || \\
+  || (-1, 2) ||         &= || (-2, 4) || \\
+  \sqrt{(-1)^2 + (2)^2} &= \sqrt{(-2)^2 + (4)^2} \\
+  \sqrt{5}              &= \sqrt {20} \\
+  \sqrt{5}              &= 2 \sqrt {5}
+\end{align*}
+which is clearly false. 
+
+Therefore, $f$ is bijective but not an isometry. $\Box$
+
+\section{Chapter 6}
+
+\end{document}
+
+
