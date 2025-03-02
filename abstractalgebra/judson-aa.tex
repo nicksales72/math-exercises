@@ -2,7 +2,6 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\newtheorem{theorem}{Theorem}
 \usepackage{amsmath, amssymb}
 \usepackage{tikz-cd}
 \usepackage{textcomp, gensymb}
@@ -10,11 +9,12 @@
 \usepackage{graphicx}       
 \usepackage{hyperref}       
 \usepackage{geometry}       
-\geometry{margin=1in}       
 \usetikzlibrary{positioning}
 \DeclareMathOperator{\lcm}{lcm}
+\newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
+\geometry{margin=1in}       
 
 \title{Judson AA Exercises}
 \author{Nicholas Sales}
@@ -206,5 +206,31 @@ Therefore, $\mathcal{U}_{n}$ is a cyclic subgroup of $\mathbb{T}$. $\Box$
 
 \subsection{4.5.45}
 \textbf{Let $z \in \mathbb{C}^{*}$. If $|z| \neq 1$, prove that the order of $z$ is infinite.}
+
+\newpage 
+\section{Chapter 9}
+
+\subsection{9.4.31}
+\textbf{Let $\phi : G_1 \rightarrow G_2$ and $\psi : G_2 \rightarrow G_3$ be isomorphisms. Show that $\phi^{-1}$ and $\psi \circ \phi$ are both isomorphisms. Using these results, show that the isomorphism of groups determines an equivalence relation on the class of all groups.}
+
+We first show $\phi^{-1} : G_2 \rightarrow G_1$ is an isomorphism. Since $\phi$ is bijective, the inverse $\phi^{-1}$ is well-defined and also bijective. Now, let $m, n \in G_2$ and define $m = \phi(x)$ and $n = \phi(y)$ for $x, y \in G_1$ which are all well-defined by bijectivity of $\phi$. We have:
+\begin{align*}
+  \phi^{-1}(mn) &= \phi^{-1}(\phi(x) \phi(y)) \\
+                &= \phi^{-1}(\phi(xy)) \\
+                &= xy \\
+                &= \phi^{-1}(m) \phi^{-1}(n).
+\end{align*}
+Thus, $\phi^{-1}$ is an isomorphism.
+
+We now show $\psi \circ \phi : G_1 \rightarrow G_3$ is an isomorphism. Since $\phi$ and $\psi$ are both bijective, their composition $\psi \circ \phi$ is also bijective. Now, let $x, y \in G_1$. Then:
+\begin{align*}
+  (\psi \circ \phi)(xy) &= \psi(\phi(xy))  \\
+                        &= \psi(\phi(x) \phi(y)) \\
+                        &= \psi(\phi(x)) \psi(\phi(y)) \\
+                        &= (\psi \circ \phi)(x) (\psi \circ \phi)(y).
+\end{align*}
+Thus, $\psi \circ \phi$ is an isomorphism.
+
+To show the isomorphism of groups determines an equivalence relation on the class of all groups, we prove $\cong$ is reflexive, symmetric, and transitive. $G \cong G$ is trivially an isomorphism by id$_{G}$. Thus, $\cong$ is reflexive. Define $\phi : G_1 \rightarrow G_2$ to be an isomorphism of groups. Using our proof, it follows that $\phi^{-1} : G_2 \rightarrow G_1$ is also an isomorphism. Thus, $\cong$ is symmetric. Lastly, define $\phi : G_1 \rightarrow G_2$ and $\psi : G_2 \rightarrow G_3$ to be two isomorphisms of groups. Using our proof, it follows that $\psi \circ \phi : G_1 \rightarrow G_3$ is also an isomorphism. Thus, $\cong$ is transitive. $\Box$
 
 \end{document}
