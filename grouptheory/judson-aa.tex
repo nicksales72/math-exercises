@@ -1,0 +1,211 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\newtheorem{theorem}{Theorem}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz-cd}
+\usepackage{textcomp, gensymb}
+\usepackage{parskip}
+\usepackage{graphicx}       
+\usepackage{hyperref}       
+\usepackage{geometry}       
+\geometry{margin=1in}       
+\usetikzlibrary{positioning}
+\DeclareMathOperator{\lcm}{lcm}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{Judson AA Exercises}
+\author{}
+\date{} 
+
+\begin{document}
+
+\maketitle 
+\tableofcontents
+
+\newpage
+\section{Chapter 3}
+
+\subsection{3.5.44}
+\textbf{List the subgroups of the quaternion group, $Q_{8}$.}
+
+\newpage
+\section{Chapter 4}
+
+\subsection{4.5.24}
+\textbf{Let $p$ and $q$ be distinct primes. How many generators does $\mathbb{Z}_{pq}$ have?}
+
+Recall that the generators of $\mathbb{Z}_{pq}$ are the $m \in \mathbb{Z}$ such that $0 \leq m < pq$ and $\gcd(m, pq) = 1$. 
+
+We can use Euler's Totient Function, denoted $\phi(pq)$, given by:
+\[
+  \phi(pq) = pq \prod_{x \mid pq} \left ( 1 - \frac{1}{x} \right ).
+\]
+This function goes over the prime numbers that divide $pq$ and returns the number of integers $m$ with $0 \leq m < pq$ that are relatively prime to $pq$. 
+
+Since $p$ and $q$ are distinct primes they will be the prime factorization of $pq$. That is, they will be the only primes that divide $pq$. Thus, to find the relatively prime $m \in \mathbb{Z}$, we can simplify the Totient Function to:
+\[
+  \phi(pq) = pq \left ( 1 - \frac{1}{p} \right ) \left ( 1 - \frac{1}{q} \right ).
+\]
+Therefore, the number of generators of $\mathbb{Z}_{pq}$ will be equal to: $pq \left ( 1 - \frac{1}{p} \right ) \left ( 1 - \frac{1}{q} \right )$. $\Box$
+
+\subsection{4.5.25}
+\textbf{Let $p$ be prime and $r$ be a positive integer. How many generators does $\mathbb{Z}_{p^r}$ have?}
+
+Similarily to the above question, we can invoke Euler's Totient Function:
+\[
+  \phi(p^r) = p^r \prod_{x \mid p^r} \left ( 1 - \frac{1}{x} \right ).
+\]
+Since $p^r$ is the prime factorization of $p^r$, the only prime that will divide $p^r$ is $p$, so we simplify the Totient Function to:
+\[
+  \phi(p^r) = p^r \left ( 1 - \frac{1}{p} \right ).
+\]
+Therefore, the number of generators of $\mathbb{Z}_{p^r}$ will be equal to: $p^r \left ( 1 - \frac{1}{p} \right )$. $\Box$
+
+\subsection{4.5.26}
+\textbf{Prove that $\mathbb{Z}_{p}$ has no nontrivial subgroups if $p$ is prime.}
+
+Recall that $\mathbb{Z}_{p}$ is a cyclic group and that every subgroup of a cyclic group is also cyclic. 
+
+Assume $m \in \mathbb{Z}_{p}$. We have two possibilities: $m = 0$ or $m \neq 0$. If $m = 0$, then $\langle m \rangle = \{0\}$ forms the trivial subgroup. If $m \neq 0$, then $\gcd(m, p) = 1$ since $p$ itself is prime and has no divisors other than $1$ and $p$. Since $m$ generates $\mathbb{Z}_{p}$ if $m$ and $p$ are relatively prime, we have $\langle m \rangle = \mathbb{Z}_{p}$.
+
+Therefore, the only subgroups of $\mathbb{Z}_{p}$ are the trivial subgroup and the entire group itself. $\Box$
+
+\newpage
+
+\subsection{4.5.30}
+\textbf{Suppose that $G$ is a group and let $a, b \in G$. Prove that if $|a| = m$ and $|b| = n$ with $\gcd(m, n) = 1$, then $\langle a \rangle \cap \langle b \rangle = \{e\}$.}
+
+The proof is by contradiction. Assume there exists some $x \in \langle a \rangle \cap \langle b \rangle$ with $x \neq e$. It follows we have:
+\[
+  x = a^{k} = b^{h},
+\]
+for some $k, h \in \mathbb{Z}$. Now, assume $x$ has order $r$. It follows:
+\[
+  x^r = a^{kr} = b^{hr} = e.
+\]
+
+This implies we must have $r \mid m$ and $r \mid n$. Since $\gcd(m, n) = 1$, the only divisor of both $m$ and $n$ is 1, so it follows $r = 1$. Thus:
+\[
+  x = e,
+\]
+but this is a contradiction as we assumed $x \neq e$.
+
+Threrefore, $\langle a \rangle \cap \langle b \rangle = \{e\}$. $\Box$
+
+\subsection{4.5.31}
+\textbf{Let $G$ be an abelian group. Show that the elements of finite order in $G$ form a subgroup. This subgroup is called the torsion subgroup of $G$.}
+
+Let $F = \{f_{1}, f_{2}, \cdots\}$ be the (possibly infinite) set of elements with finite order in $G$. To show this forms a subgroup in $G$, we invoke the subgroup test.
+
+Since $|e| = 1$, we know $e \in F$.
+
+Now, let $f_{i}, f_{j} \in F$ and assume they have orders $m$ and $n$ respectively. We want to show:
+\[
+  (f_{i} f_{j})^{k} = e,
+\]
+for some $k \in \mathbb{Z}$. Consider $k = \lcm(m, n)$. We can define $ma = k$ and $nb = k$ for some $a, b \in \mathbb{Z}$. Then:
+\[
+  (f_{i} f_{j})^k = \underbrace{f_{i} f_{j} f_{i} f_{j} \cdots f_{i} f_{j}}_{\text{k-times}},
+\]
+rearranging since $G$ is abelian:
+\begin{align*}
+  (f_{i} f_{j})^k = \underbrace{f_{i} f_{i} \cdots f_{i}}_{\text{k-times}} \underbrace{f_{j} f_{j} \cdots f_{j}}_{\text{k-times}} &= \underbrace{f_{i} f_{i} \cdots f_{i}}_{\text{ma-times}} \underbrace{f_{j} f_{j} \cdots f_{j}}_{\text{nb-times}} \\
+                                        &= (f_{i})^{ma} (f_{j})^{nb} \\
+                                        &= (f_{i}^m)^{a} (f_{j}^n)^{b} \\
+                                        &= (e)^{a} (e)^{b} \\
+                                        &= e.
+\end{align*}
+Thus, $f_{i} f_{j} \in F$.
+
+\newpage
+
+Finally, let $f_{i} \in F$ and assume $f_{i}$ has order m. Since $G$ is abelian, it follows:
+\[
+  (f_{i}^{-1})^m = (f_{i}^{m})^{-1} = e^{-1} = e.
+\]
+Since $(f_{i}^{-1})^m = e$, the order of $f_{i}^{-1}$ divides $m$, meaning it is finite. Thus, $f_{i}^{-1} \in F$.
+
+Therefore, the elements of finite order in $G$ form a subgroup of $G$. $\Box$
+
+\subsection{4.5.32}
+\textbf{Let $G$ be a finite cyclic group of order $n$ generated by $x$. Show that if $y = x^k$ where $\gcd(k, n) = 1$, then $y$ must be a generator of $G$.}
+
+Recall the following theorem:
+\begin{theorem}
+  Let G be a cyclic group of order $n$ and assume $\langle a \rangle = G$. If $b = a^k$ for some $k \in \mathbb{Z}$, then we have $|b| = \frac{n}{\gcd(k, n)}$.
+\end{theorem}
+
+Using the above theorem, since $\gcd(k, n) = 1$, we can find the order of $y$ like so:
+\[
+  |y| = \frac{n}{\gcd(k, n)} = \frac{n}{1} = n.
+\]
+Since $y$ has order $n$, it must be a generator of $G$. $\Box$
+
+\subsection{4.5.42}
+\textbf{Prove that the circle group is a subgroup of $\mathbb{C}^{*}$.}
+
+Recall the circle group is defined as $\mathbb{T} = \{z \in \mathbb{C} : |z| = 1\}$. To prove this, we invoke the subgroup test.
+
+Recall the identity in $\mathbb{C}^{*}$ is $1$. Since $|1| = 1$, we have $1 \in \mathbb{T}$.
+
+Let $z_1, z_2 \in \mathbb{T}$. Recall that $|z_1 z_2| = |z_1| |z_2|$. Since $|z_1| = |z_2| = 1$, it follows:
+\[
+  |z_1 z_2| = |z_1| |z_2| = 1 \cdot 1 = 1.
+\]
+Thus, $z_1 z_2 \in \mathbb{T}$. 
+
+Finally, let $z \in \mathbb{T}$. Recall that $|z^{-1}| = \frac{1}{|z|}$. Since $|z| = 1$, it follows directly that:
+\[
+  |z^{-1}| = \frac{1}{1} = 1.
+\]
+Thus, $z^{-1} \in \mathbb{T}$.
+
+Therefore, $\mathbb{T}$ is a subgroup of $\mathbb{C}^{*}$. $\Box$
+
+\newpage 
+
+\subsection{4.5.43}
+\textbf{Prove that the $n$th roots of unity form a cyclic subgroup of $\mathbb{T}$ of order $n$.}
+
+Recall the $n$th roots of unity are those $z \in \mathbb{C}$ satisfying $z^n = 1$. Define $\mathcal{U}_{n} = \{z : z \in \mathbb{T}, \; z^n = 1\}$. We first prove $\mathcal{U}_{n}$ forms a subgroup of $\mathbb{T}$ and conclude by showing $\mathcal{U}_{n}$ is cyclic.
+
+The identity of $\mathbb{T}$ is 1, and since $1^n = 1$ for any $n \in \mathbb{Z}$, it follows that $1 \in \mathcal{U}_{n}$.
+
+Now, let $z_1, z_2 \in \mathcal{U}_{n}$. Recall if $z^n = 1$, the $n$th roots of unity are given by $z = cis \left ( \frac{2k\pi}{n} \right )$ where $k = 0, 1, 2, \dots, n - 1$. So:
+\begin{align*}
+  z_1 z_2 &= cis \left ( \frac{2k\pi}{n} \right ) cis \left ( \frac{2h\pi}{n} \right ) \\
+          &= \left [cos \left ( \frac{2k\pi}{n}\right ) + isin \left ( \frac{2k\pi}{n} \right ) \right ] \left [cos \left ( \frac{2h\pi}{n}\right ) + isin \left ( \frac{2h\pi}{n} \right ) \right ] \\
+          &= cos \left ( \frac{2k\pi + 2h\pi}{n} \right ) + isin \left ( \frac{2k\pi + 2h\pi}{n} \right ) \\
+          &= cis \left ( \frac{2\pi(k + h)}{n} \right ).
+\end{align*}
+Now, to show $z_1 z_2 \in \mathcal{U}_{n}$, we compute:
+\[
+  (z_1 z_2)^n = cis \left (n \frac{2\pi(k + h)}{n} \right ) = cis (2\pi(k + h)) = 1,
+\]
+since $k + h$ is computed mod $2\pi$. Thus, $z_1 z_2 \in \mathcal{U}_{n}$.
+
+Lastly for the subgroup test, let $z \in \mathcal{U}_{n}$. Since $z = cis \left ( \frac{2k\pi}{n} \right )$, it follows we have:
+\[
+  z^{-1} = cis \left (- \frac{2k\pi}{n} \right ),
+\]
+and so:
+\[
+  (z^{-1})^n = cis \left (-n \frac{2k\pi}{n} \right ) = cis(-2k\pi) = 1.
+\]
+Thus, $z^{-1} \in \mathcal{U}_{n}$.
+
+Finally, to show $\mathcal{U}_{n}$ is cyclic, consider $\omega = cis \left ( \frac{2\pi}{n} \right )$. Since $n$th roots of unity are given by $z = cis \left ( \frac{2k\pi}{n} \right )$ for $k = 0, 1, 2, \cdots, n - 1$, it is clear $\omega^n = 1$. Further, we can generate any $z = cis \left ( \frac{2k\pi}{n} \right )$ with $\omega^k$ since:
+\[
+  \omega^k = cis \left (k \frac{2\pi}{n} \right ) = cis \left ( \frac{2k\pi}{n} \right ).
+\]
+Thus, it follows the set $\{\omega^k : k = 0, 1, 2, \cdots n - 1\}$ will generate all $n$th roots of unity.
+
+Therefore, $\mathcal{U}_{n}$ is a cyclic subgroup of $\mathbb{T}$. $\Box$
+
+\newpage
+
+
+\end{document}
